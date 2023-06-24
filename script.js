@@ -27,6 +27,17 @@ let percentage = (value) => {
 // btn-click
 
 let selectOne = () => {
-  let one = document.getElementById("numOne").value;
-  document.getElementById("screen").innerText = one;
+  let one = document.getElementById("numOne").textContent;
+  let screen = document.getElementById("screen");
+  screen.innerText += one;
+};
+let selectTwo = () => {
+  let two = document.getElementById("numTwo").textContent;
+  let screen = document.getElementById("screen");
+  screen.innerText += two;
+};
+
+let allClear = () => {
+  let screen = document.getElementById("screen");
+  screen.innerText = "";
 };

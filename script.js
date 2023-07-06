@@ -87,10 +87,77 @@ let selectZero = () => {
 let addDecimal = () => {
   let decimal = document.getElementById("dec").textContent;
   let screen = document.getElementById("screen");
-  screen.innerText += decimal;
+  if (!screen.innerText.includes(decimal)) {
+    screen.innerText += decimal;
+  }
 };
 
 let allClear = () => {
   let screen = document.getElementById("screen");
   screen.innerText = "";
 };
+
+//
+
+let firstValue = null;
+let secondValue = null;
+
+let grabPlus = () => {
+  if (firstValue === null) {
+    let screen = document.getElementById("screen");
+    firstValue = screen.innerText;
+  } else if (secondValue === null) {
+    let screen = document.getElementById("screen");
+    secondValue = screen.innerText;
+  } else {
+    let result = addition(+firstValue, +secondValue);
+    let screen = document.getElementById("screen");
+    screen.innerText = result;
+  }
+};
+
+let grabMinus = () => {
+  if (firstValue === null) {
+    let screen = document.getElementById("screen");
+    firstValue = screen.innerText;
+  } else if (secondValue === null) {
+    let screen = document.getElementById("screen");
+    secondValue = screen.innerText;
+  } else {
+    let result = subtraction(+firstValue, +secondValue);
+    let screen = document.getElementById("screen");
+    screen.innerText = result;
+  }
+};
+
+let grabMulti = () => {
+  if (firstValue === null) {
+    let screen = document.getElementById("screen");
+    firstValue = screen.innerText;
+  } else if (secondValue === null) {
+    let screen = document.getElementById("screen");
+    secondValue = screen.innerText;
+  } else {
+    let result = multiplication(+firstValue, +secondValue);
+    let screen = document.getElementById("screen");
+    screen.innerText = result;
+  }
+};
+
+let grabDivision = () => {
+  if (firstValue === null) {
+    let screen = document.getElementById("screen");
+    firstValue = screen.innerText;
+  } else if (secondValue === null) {
+    let screen = document.getElementById("screen");
+    secondValue = screen.innerText;
+  } else {
+    let result = division(+firstValue, +secondValue);
+    let screen = document.getElementById("screen");
+    screen.innerText = result;
+  }
+};
+
+// PSEUDO CODE
+//
+// write number >> save it>> clear screen>> show addition

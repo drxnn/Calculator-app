@@ -106,6 +106,7 @@ let grabPlus = () => {
   if (firstValue === null) {
     let screen = document.getElementById("screen");
     firstValue = screen.innerText;
+    screen.innerText = "";
   } else if (secondValue === null) {
     let screen = document.getElementById("screen");
     secondValue = screen.innerText;
@@ -113,6 +114,8 @@ let grabPlus = () => {
     let result = addition(+firstValue, +secondValue);
     let screen = document.getElementById("screen");
     screen.innerText = result;
+    firstValue = null;
+    secondValue = null;
   }
 };
 
@@ -120,6 +123,7 @@ let grabMinus = () => {
   if (firstValue === null) {
     let screen = document.getElementById("screen");
     firstValue = screen.innerText;
+    screen.innerText = "";
   } else if (secondValue === null) {
     let screen = document.getElementById("screen");
     secondValue = screen.innerText;
@@ -127,6 +131,8 @@ let grabMinus = () => {
     let result = subtraction(+firstValue, +secondValue);
     let screen = document.getElementById("screen");
     screen.innerText = result;
+    firstValue = null;
+    secondValue = null;
   }
 };
 
@@ -134,6 +140,7 @@ let grabMulti = () => {
   if (firstValue === null) {
     let screen = document.getElementById("screen");
     firstValue = screen.innerText;
+    screen.innerText = "";
   } else if (secondValue === null) {
     let screen = document.getElementById("screen");
     secondValue = screen.innerText;
@@ -141,6 +148,8 @@ let grabMulti = () => {
     let result = multiplication(+firstValue, +secondValue);
     let screen = document.getElementById("screen");
     screen.innerText = result;
+    firstValue = null;
+    secondValue = null;
   }
 };
 
@@ -148,6 +157,7 @@ let grabDivision = () => {
   if (firstValue === null) {
     let screen = document.getElementById("screen");
     firstValue = screen.innerText;
+    screen.innerText = "";
   } else if (secondValue === null) {
     let screen = document.getElementById("screen");
     secondValue = screen.innerText;
@@ -155,9 +165,17 @@ let grabDivision = () => {
     let result = division(+firstValue, +secondValue);
     let screen = document.getElementById("screen");
     screen.innerText = result;
+    firstValue = null;
+    secondValue = null;
   }
 };
 
-// PSEUDO CODE
-//
-// write number >> save it>> clear screen>> show addition
+let negateNumber = () => {
+  let screen = document.getElementById("screen");
+  firstValue = screen.innerText;
+  let result = negation(firstValue);
+  screen.innerText = result;
+};
+
+// Add negation function- done
+// First value should disappear when clicking an operation and only the second value should be seen, then when operation is done only the result should be on the screen

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -24,7 +23,7 @@
             <div id="positiveNegative" onclick="negateNumber()">
               <span>+/-</span>
             </div>
-            <div id="percentage">
+            <div id="percentage" onclick="percentageNum()">
               <span>%</span>
             </div>
           </div>
@@ -67,24 +66,25 @@
         </div>
         <div class="opsContainer">
           <div class="operations">
-            <div id="divide" onclick="grabDivision()">
+            <div class="op" id="divide">
               <span> &#247;</span>
             </div>
-            <div id="multiply" onclick="grabMulti()">
+            <div class="op" id="multiply">
               <span>&#215;</span>
             </div>
-            <div id="subtract" onclick="grabMinus()">
+            <div class="op" id="subtract">
               <span>-</span>
             </div>
-            <div id="add" onclick="grabPlus()">
+            <div class="op" id="add" onclick="handleClick(event)">
               <span>+</span>
             </div>
-            <div id="equals">
+            <div id="equals" class="op">
               <span>=</span>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>

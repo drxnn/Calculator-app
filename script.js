@@ -1,6 +1,7 @@
 // FUNCTIONS //
 
 let addition = (a, b) => {
+  console.log(a, b);
   return a + b;
 };
 
@@ -21,7 +22,7 @@ let negation = (value) => {
 };
 
 let percentage = (value) => {
-  return value / 100;
+  return parseInt(value) / 100;
 };
 
 // btn-click // FUNCTIONS FOR BUTTONS //
@@ -69,6 +70,7 @@ let selectSeven = () => {
 let selectEight = () => {
   let eight = document.getElementById("numEight").textContent;
   let screen = document.getElementById("screen");
+  console.log(screen);
   screen.innerText += eight;
 };
 
@@ -101,81 +103,167 @@ let allClear = () => {
 
 let firstValue = null;
 let secondValue = null;
+let operations = null;
+let result = null;
 
-let grabPlus = () => {
+const operatorClicked = document.querySelectorAll(".op");
+
+operatorClicked.forEach((operator) => {
+  operator.addEventListener("click", handleClick);
+});
+
+function handleClick(event) {
+  let innerContent = event.target.innerText;
   if (firstValue === null) {
     let screen = document.getElementById("screen");
     firstValue = screen.innerText;
     screen.innerText = "";
   } else if (secondValue === null) {
     let screen = document.getElementById("screen");
+    console.log(`second value is ${screen.innerText}`);
     secondValue = screen.innerText;
   } else {
-    let result = addition(+firstValue, +secondValue);
-    let screen = document.getElementById("screen");
-    screen.innerText = result;
-    firstValue = null;
-    secondValue = null;
+    switch (innerContent) {
+      case "+":
+        result = addition(+firstValue, +secondValue);
+        screen.innerText = result;
+        console.log(result, firstValue, secondValue);
+        firstValue = null;
+        secondValue = null;
+        break;
+    }
   }
-};
+}
 
-let grabMinus = () => {
-  if (firstValue === null) {
-    let screen = document.getElementById("screen");
-    firstValue = screen.innerText;
-    screen.innerText = "";
-  } else if (secondValue === null) {
-    let screen = document.getElementById("screen");
-    secondValue = screen.innerText;
-  } else {
-    let result = subtraction(+firstValue, +secondValue);
-    let screen = document.getElementById("screen");
-    screen.innerText = result;
-    firstValue = null;
-    secondValue = null;
-  }
-};
+// function operationsFunction(innerContent) {
 
-let grabMulti = () => {
-  if (firstValue === null) {
-    let screen = document.getElementById("screen");
-    firstValue = screen.innerText;
-    screen.innerText = "";
-  } else if (secondValue === null) {
-    let screen = document.getElementById("screen");
-    secondValue = screen.innerText;
-  } else {
-    let result = multiplication(+firstValue, +secondValue);
-    let screen = document.getElementById("screen");
-    screen.innerText = result;
-    firstValue = null;
-    secondValue = null;
-  }
-};
+// if (firstValue === null) {
+//   let screen = document.getElementById("screen");
+//   firstValue = screen.innerText;
+//   screen.innerText = "";
+// } else if (secondValue === null) {
+//   let screen = document.getElementById("screen");
+//   secondValue = screen.innerText;
+// } else if (innerContent === "+") {
+//   let result = addition(+firstValue, +secondValue);
+//   let screen = document.getElementById("screen");
+//   screen.innerText = result;
+//   firstValue = null;
+//   secondValue = null;
+// } else if (innerContent === "-") {
+//   let result = subtraction(+firstValue, +secondValue);
+//   let screen = document.getElementById("screen");
+//   screen.innerText = result;
+//   firstValue = null;
+//   secondValue = null;
+// } else if (innerContent === "×") {
+//   let result = multiplication(+firstValue, +secondValue);
+//   let screen = document.getElementById("screen");
+//   screen.innerText = result;
+//   firstValue = null;
+//   secondValue = null;
+// } else if (innerContent === "÷") {
+//   let result = division(+firstValue, +secondValue);
+//   let screen = document.getElementById("screen");
+//   screen.innerText = result;
+//   firstValue = null;
+//   secondValue = null;
+// }
 
-let grabDivision = () => {
-  if (firstValue === null) {
-    let screen = document.getElementById("screen");
-    firstValue = screen.innerText;
-    screen.innerText = "";
-  } else if (secondValue === null) {
-    let screen = document.getElementById("screen");
-    secondValue = screen.innerText;
-  } else {
-    let result = division(+firstValue, +secondValue);
-    let screen = document.getElementById("screen");
-    screen.innerText = result;
-    firstValue = null;
-    secondValue = null;
-  }
-};
+// }
+
+// additionOperatorClicked.addEventListener("click", operationsFunction);
+// subtractionOperatorClicked.addEventListener("click", operationsFunction);
+// multiplicationOperatorClicked.addEventListener("click", operationsFunction);
+// divisionOperatorClicked.addEventListener("click", operationsFunction);
+
+// let grabPlus = () => {
+//   if (firstValue === null) {
+//     let screen = document.getElementById("screen");
+//     firstValue = screen.innerText;
+//     screen.innerText = "";
+//   } else if (secondValue === null) {
+//     let screen = document.getElementById("screen");
+//     secondValue = screen.innerText;
+//   } else {
+//     let result = addition(+firstValue, +secondValue);
+//     let screen = document.getElementById("screen");
+//     screen.innerText = result;
+//     firstValue = null;
+//     secondValue = null;
+//   }
+// };
+
+// let grabMinus = () => {
+//   if (firstValue === null) {
+//     let screen = document.getElementById("screen");
+//     firstValue = screen.innerText;
+//     screen.innerText = "";
+//   } else if (secondValue === null) {
+//     let screen = document.getElementById("screen");
+//     secondValue = screen.innerText;
+//   } else {
+//     let result = subtraction(+firstValue, +secondValue);
+//     let screen = document.getElementById("screen");
+//     screen.innerText = result;
+//     firstValue = null;
+//     secondValue = null;
+//   }
+// };
+
+// let grabMulti = () => {
+//   if (firstValue === null) {
+//     let screen = document.getElementById("screen");
+//     firstValue = screen.innerText;
+//     screen.innerText = "";
+//   } else if (secondValue === null) {
+//     let screen = document.getElementById("screen");
+//     secondValue = screen.innerText;
+//   } else {
+//     let result = multiplication(+firstValue, +secondValue);
+//     let screen = document.getElementById("screen");
+//     screen.innerText = result;
+//     firstValue = null;
+//     secondValue = null;
+//   }
+// };
+
+// let grabDivision = () => {
+//   if (firstValue === null) {
+//     let screen = document.getElementById("screen");
+//     firstValue = screen.innerText;
+//     screen.innerText = "";
+//   } else if (secondValue === null) {
+//     let screen = document.getElementById("screen");
+//     secondValue = screen.innerText;
+//   } else {
+//     let result = division(+firstValue, +secondValue);
+//     let screen = document.getElementById("screen");
+//     screen.innerText = result;
+//     firstValue = null;
+//     secondValue = null;
+//   }
+// };
+// //
 
 let negateNumber = () => {
   let screen = document.getElementById("screen");
-  firstValue = screen.innerText;
-  let result = negation(firstValue);
-  screen.innerText = result;
+  secondValue = negation(screen.innerText);
+  screen.innerText = secondValue;
 };
 
-// Add negation function- done
-// First value should disappear when clicking an operation and only the second value should be seen, then when operation is done only the result should be on the screen
+let percentageNum = () => {
+  let screen = document.getElementById("screen");
+  secondValue = percentage(screen.innerText);
+  screen.innerText = secondValue;
+};
+
+//
+//
+//
+//
+//
+
+// Add negation function>>> done
+// First value should disappear when clicking an operation and only the second value should be seen, then when operation is done only the result should be on the screen>>>done
+// add percentage function done

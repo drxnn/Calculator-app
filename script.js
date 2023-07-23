@@ -150,12 +150,19 @@ function handleClick(event) {
 
 let negateNumber = () => {
   let screen = document.getElementById("screen");
-  secondValue = negation(screen.innerText);
-  screen.innerText = secondValue;
+  if (isNaN(screen.innerText)) {
+    return;
+  } else if (firstValue === null) {
+    firstValue = negation(screen.innerText);
+    screen.innerText = firstValue;
+  } else {
+    secondValue = negation(screen.innerText);
+    screen.innerText = secondValue;
+  }
 };
 
 let percentageNum = () => {
   let screen = document.getElementById("screen");
-  secondValue = percentage(screen.innerText);
-  screen.innerText = secondValue;
+  firstValue = percentage(screen.innerText);
+  screen.innerText = firstValue;
 };

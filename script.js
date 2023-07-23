@@ -97,6 +97,9 @@ let addDecimal = () => {
 let allClear = () => {
   let screen = document.getElementById("screen");
   screen.innerText = "";
+  firstValue = null;
+  secondValue = null;
+  result = null;
 };
 
 //
@@ -120,131 +123,30 @@ function handleClick(event) {
     screen.innerText = "";
   } else if (secondValue === null) {
     let screen = document.getElementById("screen");
-    console.log(`second value is ${screen.innerText}`);
     secondValue = screen.innerText;
-  } else {
     switch (innerContent) {
       case "+":
         result = addition(+firstValue, +secondValue);
-        screen.innerText = result;
-        console.log(result, firstValue, secondValue);
-        firstValue = null;
-        secondValue = null;
+        break;
+      case "-":
+        result = subtraction(+firstValue, +secondValue);
+        break;
+      case "÷":
+        result = division(+firstValue, +secondValue);
+        break;
+      case "×":
+        result = multiplication(+firstValue, +secondValue);
         break;
     }
+    screen.innerText = `The result of your calculation is ${result}`;
+    console.log(result, firstValue, secondValue);
+    firstValue = null;
+    secondValue = null;
   }
 }
 
-// function operationsFunction(innerContent) {
-
-// if (firstValue === null) {
-//   let screen = document.getElementById("screen");
-//   firstValue = screen.innerText;
-//   screen.innerText = "";
-// } else if (secondValue === null) {
-//   let screen = document.getElementById("screen");
-//   secondValue = screen.innerText;
-// } else if (innerContent === "+") {
-//   let result = addition(+firstValue, +secondValue);
-//   let screen = document.getElementById("screen");
-//   screen.innerText = result;
-//   firstValue = null;
-//   secondValue = null;
-// } else if (innerContent === "-") {
-//   let result = subtraction(+firstValue, +secondValue);
-//   let screen = document.getElementById("screen");
-//   screen.innerText = result;
-//   firstValue = null;
-//   secondValue = null;
-// } else if (innerContent === "×") {
-//   let result = multiplication(+firstValue, +secondValue);
-//   let screen = document.getElementById("screen");
-//   screen.innerText = result;
-//   firstValue = null;
-//   secondValue = null;
-// } else if (innerContent === "÷") {
-//   let result = division(+firstValue, +secondValue);
-//   let screen = document.getElementById("screen");
-//   screen.innerText = result;
-//   firstValue = null;
-//   secondValue = null;
-// }
-
-// }
-
-// additionOperatorClicked.addEventListener("click", operationsFunction);
-// subtractionOperatorClicked.addEventListener("click", operationsFunction);
-// multiplicationOperatorClicked.addEventListener("click", operationsFunction);
-// divisionOperatorClicked.addEventListener("click", operationsFunction);
-
-// let grabPlus = () => {
-//   if (firstValue === null) {
-//     let screen = document.getElementById("screen");
-//     firstValue = screen.innerText;
-//     screen.innerText = "";
-//   } else if (secondValue === null) {
-//     let screen = document.getElementById("screen");
-//     secondValue = screen.innerText;
-//   } else {
-//     let result = addition(+firstValue, +secondValue);
-//     let screen = document.getElementById("screen");
-//     screen.innerText = result;
-//     firstValue = null;
-//     secondValue = null;
-//   }
-// };
-
-// let grabMinus = () => {
-//   if (firstValue === null) {
-//     let screen = document.getElementById("screen");
-//     firstValue = screen.innerText;
-//     screen.innerText = "";
-//   } else if (secondValue === null) {
-//     let screen = document.getElementById("screen");
-//     secondValue = screen.innerText;
-//   } else {
-//     let result = subtraction(+firstValue, +secondValue);
-//     let screen = document.getElementById("screen");
-//     screen.innerText = result;
-//     firstValue = null;
-//     secondValue = null;
-//   }
-// };
-
-// let grabMulti = () => {
-//   if (firstValue === null) {
-//     let screen = document.getElementById("screen");
-//     firstValue = screen.innerText;
-//     screen.innerText = "";
-//   } else if (secondValue === null) {
-//     let screen = document.getElementById("screen");
-//     secondValue = screen.innerText;
-//   } else {
-//     let result = multiplication(+firstValue, +secondValue);
-//     let screen = document.getElementById("screen");
-//     screen.innerText = result;
-//     firstValue = null;
-//     secondValue = null;
-//   }
-// };
-
-// let grabDivision = () => {
-//   if (firstValue === null) {
-//     let screen = document.getElementById("screen");
-//     firstValue = screen.innerText;
-//     screen.innerText = "";
-//   } else if (secondValue === null) {
-//     let screen = document.getElementById("screen");
-//     secondValue = screen.innerText;
-//   } else {
-//     let result = division(+firstValue, +secondValue);
-//     let screen = document.getElementById("screen");
-//     screen.innerText = result;
-//     firstValue = null;
-//     secondValue = null;
-//   }
-// };
-// //
+// / // / / // /
+// / // / / / /
 
 let negateNumber = () => {
   let screen = document.getElementById("screen");
@@ -257,13 +159,3 @@ let percentageNum = () => {
   secondValue = percentage(screen.innerText);
   screen.innerText = secondValue;
 };
-
-//
-//
-//
-//
-//
-
-// Add negation function>>> done
-// First value should disappear when clicking an operation and only the second value should be seen, then when operation is done only the result should be on the screen>>>done
-// add percentage function done

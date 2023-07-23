@@ -163,6 +163,10 @@ let negateNumber = () => {
 
 let percentageNum = () => {
   let screen = document.getElementById("screen");
-  firstValue = percentage(screen.innerText);
-  screen.innerText = firstValue;
+  if (isNaN(screen.innerText)) {
+    return;
+  } else {
+    firstValue = percentage(screen.innerText);
+    screen.innerText = firstValue;
+  }
 };

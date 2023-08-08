@@ -23,6 +23,7 @@ let division = (a, b) => {
 
 // This function negates a value
 let negation = (value) => {
+  console.log("Negating value:", value);
   return -value;
 };
 
@@ -133,7 +134,7 @@ function handleClick(event) {
   // innerContent is equal to one of the operators clicked(+,-,x,/)
   let innerContent = event.target.innerText;
   // check if firstValue is null or firstValue is a negative number
-  if (firstValue === null || firstValue.toString().charAt(0) == "-") {
+  if (firstValue === null) {
     // grab screen and set firstValue to screen
     let screen = document.getElementById("screen");
     firstValue = screen.innerText;
@@ -141,7 +142,7 @@ function handleClick(event) {
     screen.innerText = "";
   }
   // if secondValue is empty, add the number thats on the screen to the secondValue variable
-  else if (secondValue === null) {
+  else if (secondValue === null || firstValue.toString().charAt(0) == "-") {
     let screen = document.getElementById("screen");
     secondValue = screen.innerText;
     // switch statement that uses one of the operations based on which operator was clicked
@@ -169,13 +170,18 @@ function handleClick(event) {
 }
 
 let negateNumber = () => {
+  console.log("Negate button clicked");
   let screen = document.getElementById("screen");
+  console.log("Screen content:", screen.innerText);
   if (isNaN(screen.innerText)) {
+    console.log("Screen content is not a number");
     return;
   } else if (firstValue === null) {
+    console.log("Negating firstValue");
     firstValue = negation(screen.innerText);
     screen.innerText = firstValue;
   } else {
+    console.log("Negating secondValue");
     secondValue = negation(screen.innerText);
     screen.innerText = secondValue;
   }

@@ -1,31 +1,41 @@
-// FUNCTIONS //
+//********** */
+// OPERATION FUNCTIONS
+// ******************
+//
 
+// This Functions adds two numbers
 let addition = (a, b) => {
   console.log(a, b);
   return a + b;
 };
 
+// This functions subtracts two numbers
 let subtraction = (a, b) => {
   return a - b;
 };
 
+// This functions multiplies two numbers
 let multiplication = (a, b) => {
   return a * b;
 };
 
+// This number divides two numbers
 let division = (a, b) => {
   return a / b;
 };
 
+// This function negates a value
 let negation = (value) => {
   return -value;
 };
 
+// This function divides value by 100
 let percentage = (value) => {
   return parseInt(value) / 100;
 };
 
-// btn-click // FUNCTIONS FOR BUTTONS //
+// All these functions below allow us to select numbers and display them on the screen section
+//
 
 let selectOne = () => {
   let one = document.getElementById("numOne").textContent;
@@ -86,6 +96,8 @@ let selectZero = () => {
   screen.innerText += zero;
 };
 
+// This Function below adds a decimal to our value and displays it on the screen
+//
 let addDecimal = () => {
   let decimal = document.getElementById("dec").textContent;
   let screen = document.getElementById("screen");
@@ -94,6 +106,8 @@ let addDecimal = () => {
   }
 };
 
+// This function below clears our screen and removes values from our variables
+//
 let allClear = () => {
   let screen = document.getElementById("screen");
   screen.innerText = "";
@@ -102,22 +116,28 @@ let allClear = () => {
   result = null;
 };
 
-//
+//********* */
+// FUNCTIONALITY**
+//************ */
 
+// Global variables set to null so that we can manipulate them later down the line
+//
 let firstValue = null;
 let secondValue = null;
 let operations = null;
 let result = null;
 
+// nodeList of all operators on our html
 const operatorClicked = document.querySelectorAll(".op");
 
+// This function iterates through each element on the nodeList and runs the handleClick function if one of the operator is clicked
 operatorClicked.forEach((operator) => {
   operator.addEventListener("click", handleClick);
 });
 
 function handleClick(event) {
   let innerContent = event.target.innerText;
-  if (firstValue === null) {
+  if (firstValue === null || firstValue.toString().charAt(0) == "-") {
     let screen = document.getElementById("screen");
     firstValue = screen.innerText;
     screen.innerText = "";
@@ -138,7 +158,7 @@ function handleClick(event) {
         result = multiplication(+firstValue, +secondValue);
         break;
     }
-    screen.innerText = `The result of your calculation is ${result}`;
+    screen.innerText = result;
     console.log(result, firstValue, secondValue);
     firstValue = null;
     secondValue = null;
@@ -147,6 +167,7 @@ function handleClick(event) {
 
 // / // / / // /
 // / // / / / /
+///////////////
 
 let negateNumber = () => {
   let screen = document.getElementById("screen");

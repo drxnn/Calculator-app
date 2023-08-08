@@ -1,7 +1,4 @@
-//********** */
-// OPERATION FUNCTIONS
-// ******************
-//
+// Calculator App
 
 // This Functions adds two numbers
 let addition = (a, b) => {
@@ -116,10 +113,6 @@ let allClear = () => {
   result = null;
 };
 
-//********* */
-// FUNCTIONALITY**
-//************ */
-
 // Global variables set to null so that we can manipulate them later down the line
 //
 let firstValue = null;
@@ -135,15 +128,23 @@ operatorClicked.forEach((operator) => {
   operator.addEventListener("click", handleClick);
 });
 
+// takes event above as parameter
 function handleClick(event) {
+  // innerContent is equal to one of the operators clicked(+,-,x,/)
   let innerContent = event.target.innerText;
+  // check if firstValue is null or firstValue is a negative number
   if (firstValue === null || firstValue.toString().charAt(0) == "-") {
+    // grab screen and set firstValue to screen
     let screen = document.getElementById("screen");
     firstValue = screen.innerText;
+    // After value is store in firstValue variable, clear screen for next variable
     screen.innerText = "";
-  } else if (secondValue === null) {
+  }
+  // if secondValue is empty, add the number thats on the screen to the secondValue variable
+  else if (secondValue === null) {
     let screen = document.getElementById("screen");
     secondValue = screen.innerText;
+    // switch statement that uses one of the operations based on which operator was clicked
     switch (innerContent) {
       case "+":
         result = addition(+firstValue, +secondValue);
@@ -158,16 +159,14 @@ function handleClick(event) {
         result = multiplication(+firstValue, +secondValue);
         break;
     }
+    // Display result on screen
     screen.innerText = result;
     console.log(result, firstValue, secondValue);
+    // Empty values after operation is done
     firstValue = null;
     secondValue = null;
   }
 }
-
-// / // / / // /
-// / // / / / /
-///////////////
 
 let negateNumber = () => {
   let screen = document.getElementById("screen");

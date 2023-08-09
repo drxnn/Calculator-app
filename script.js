@@ -133,18 +133,20 @@ operatorClicked.forEach((operator) => {
 function handleClick(event) {
   // innerContent is equal to one of the operators clicked(+,-,x,/)
   let innerContent = event.target.innerText;
-  // check if firstValue is null or firstValue is a negative number
+  // check if firstValue is null
   if (firstValue === null) {
     // grab screen and set firstValue to screen
     let screen = document.getElementById("screen");
     firstValue = screen.innerText;
+    console.log(`first value is ${firstValue}`);
     // After value is store in firstValue variable, clear screen for next variable
     screen.innerText = "";
   }
   // if secondValue is empty, add the number thats on the screen to the secondValue variable
-  else if (secondValue === null || firstValue.toString().charAt(0) == "-") {
+  else if (secondValue === null || firstValue < 0) {
     let screen = document.getElementById("screen");
     secondValue = screen.innerText;
+    console.log(`second value is ${secondValue}`);
     // switch statement that uses one of the operations based on which operator was clicked
     switch (innerContent) {
       case "+":
@@ -162,7 +164,7 @@ function handleClick(event) {
     }
     // Display result on screen
     screen.innerText = result;
-    console.log(result, firstValue, secondValue);
+
     // Empty values after operation is done
     firstValue = null;
     secondValue = null;
@@ -180,6 +182,7 @@ let negateNumber = () => {
     console.log("Negating firstValue");
     firstValue = negation(screen.innerText);
     screen.innerText = firstValue;
+    firstValue = null;
   } else {
     console.log("Negating secondValue");
     secondValue = negation(screen.innerText);
@@ -194,5 +197,6 @@ let percentageNum = () => {
   } else {
     firstValue = percentage(screen.innerText);
     screen.innerText = firstValue;
+    firstValue = null;
   }
 };

@@ -1,4 +1,14 @@
 // Calculator App
+//
+// global vars/
+//
+let firstValue = null;
+let secondValue = null;
+let operations = null;
+let result = null;
+let equalsClicked = null;
+let innerContent;
+let equals = document.getElementById("equals");
 
 // This Functions adds two numbers
 let addition = (a, b) => {
@@ -31,6 +41,29 @@ let negation = (value) => {
 let percentage = (value) => {
   return parseInt(value) / 100;
 };
+
+//// function that does calculations
+//
+
+function calculate() {
+  switch (innerContent) {
+    case "+":
+      result = addition(+firstValue, +secondValue);
+      break;
+    case "-":
+      result = subtraction(+firstValue, +secondValue);
+      break;
+    case "÷":
+      result = division(+firstValue, +secondValue);
+      break;
+    case "×":
+      result = multiplication(+firstValue, +secondValue);
+      break;
+  }
+  screen = document.getElementById("screen");
+  screen.innerText = result;
+}
+///
 
 // All these functions below allow us to select numbers and display them on the screen section
 //
@@ -114,15 +147,6 @@ let allClear = () => {
   result = null;
 };
 
-// Global variables set to null so that we can manipulate them later down the line
-//
-let firstValue = null;
-let secondValue = null;
-let operations = null;
-let result = null;
-
-let equals = document.getElementById("equals");
-
 // nodeList of all operators on our html
 const operatorClicked = document.querySelectorAll(".op");
 
@@ -130,11 +154,15 @@ const operatorClicked = document.querySelectorAll(".op");
 operatorClicked.forEach((operator) => {
   operator.addEventListener("click", handleClick);
 });
+//
+// make function that returns event.target ********
+// ****
 
 // takes event above as parameter
 function handleClick(event) {
   // innerContent is equal to one of the operators clicked(+,-,x,/)
-  let innerContent = event.target.innerText;
+  innerContent = event.target.innerText;
+  console.log(`inner content is ${innerContent}`);
   // check if firstValue is null
 
   if (firstValue === null) {
@@ -152,36 +180,23 @@ function handleClick(event) {
     console.log(`second value is ${secondValue}`);
     // switch statement that uses one of the operations based on which operator was clicked
     calculate();
-    function calculate() {
-      switch (innerContent) {
-        case "+":
-          result = addition(+firstValue, +secondValue);
-          break;
-        case "-":
-          result = subtraction(+firstValue, +secondValue);
-          break;
-        case "÷":
-          result = division(+firstValue, +secondValue);
-          break;
-        case "×":
-          result = multiplication(+firstValue, +secondValue);
-          break;
-      }
-      screen.innerText = result;
-    }
-
-    // Message for future self:
-    // make equals function that will fire the calculate function if equals is pressed, you might have to take calculate function out, because of closure.
 
     // Empty values after operation is done
     firstValue = null;
     secondValue = null;
   }
 }
+// equals function to evaluate if = is clicked.
 equals.addEventListener("click", function () {
-  console.log("equals was clicked");
-  secondValue = screen.innerText;
-  calculate();
+  equalsClicked = true;
+  if (firstValue !== null) {
+    let screen = document.getElementById("screen");
+    secondValue = screen.innerText;
+    screen.innerText = "";
+    calculate();
+    firstValue = null;
+    secondValue = null;
+  }
 });
 
 let negateNumber = () => {

@@ -1,6 +1,6 @@
 // Calculator App
-//
-// global vars/
+
+// Variables
 //
 let firstValue = null;
 let secondValue = null;
@@ -8,8 +8,10 @@ let operations = null;
 let result = null;
 let equalsClicked = null;
 let innerContent;
+
 let equals = document.getElementById("equals");
 
+//FUNCTIONS
 // This Functions adds two numbers
 let addition = (a, b) => {
   console.log(a, b);
@@ -33,7 +35,6 @@ let division = (a, b) => {
 
 // This function negates a value
 let negation = (value) => {
-  console.log("Negating value:", value);
   return -value;
 };
 
@@ -42,8 +43,7 @@ let percentage = (value) => {
   return parseInt(value) / 100;
 };
 
-//// function that does calculations
-//
+//Calculate function
 
 function calculate() {
   switch (innerContent) {
@@ -63,9 +63,7 @@ function calculate() {
   screen = document.getElementById("screen");
   screen.innerText = result;
 }
-///
-
-// All these functions below allow us to select numbers and display them on the screen section
+// The functions below allow us to select numbers and display them on the screen
 //
 
 let selectOne = () => {
@@ -127,7 +125,7 @@ let selectZero = () => {
   screen.innerText += zero;
 };
 
-// This Function below adds a decimal to our value and displays it on the screen
+// The function below adds a decimal to our value and displays it on the screen
 //
 let addDecimal = () => {
   let decimal = document.getElementById("dec").textContent;
@@ -136,8 +134,7 @@ let addDecimal = () => {
     screen.innerText += decimal;
   }
 };
-
-// This function below clears our screen and removes values from our variables
+// The function below clears our screen and removes values from our variables
 //
 let allClear = () => {
   let screen = document.getElementById("screen");
@@ -150,26 +147,20 @@ let allClear = () => {
 // nodeList of all operators on our html
 const operatorClicked = document.querySelectorAll(".op");
 
-// This function iterates through each element on the nodeList and runs the handleClick function if one of the operator is clicked
+// The function below iterates through each element on the nodeList and runs the handleClick function if one of the operators is clicked
 operatorClicked.forEach((operator) => {
   operator.addEventListener("click", handleClick);
 });
-//
-// make function that returns event.target ********
-// ****
 
-// takes event above as parameter
+// Function to handle event
 function handleClick(event) {
   // innerContent is equal to one of the operators clicked(+,-,x,/)
   innerContent = event.target.innerText;
-  console.log(`inner content is ${innerContent}`);
   // check if firstValue is null
-
   if (firstValue === null) {
     // grab screen and set firstValue to screen
     let screen = document.getElementById("screen");
     firstValue = screen.innerText;
-    console.log(`first value is ${firstValue}`);
     // After value is store in firstValue variable, clear screen for next variable
     screen.innerText = "";
   }
@@ -177,16 +168,14 @@ function handleClick(event) {
   else if (secondValue === null || firstValue < 0) {
     let screen = document.getElementById("screen");
     secondValue = screen.innerText;
-    console.log(`second value is ${secondValue}`);
-    // switch statement that uses one of the operations based on which operator was clicked
+    //Fire calculate function
     calculate();
-
     // Empty values after operation is done
     firstValue = null;
     secondValue = null;
   }
 }
-// equals function to evaluate if = is clicked.
+// Function to evaluate if = is clicked.
 equals.addEventListener("click", function () {
   equalsClicked = true;
   if (firstValue !== null) {

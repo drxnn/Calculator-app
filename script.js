@@ -121,6 +121,8 @@ let secondValue = null;
 let operations = null;
 let result = null;
 
+let equals = document.getElementById("equals");
+
 // nodeList of all operators on our html
 const operatorClicked = document.querySelectorAll(".op");
 
@@ -134,6 +136,7 @@ function handleClick(event) {
   // innerContent is equal to one of the operators clicked(+,-,x,/)
   let innerContent = event.target.innerText;
   // check if firstValue is null
+
   if (firstValue === null) {
     // grab screen and set firstValue to screen
     let screen = document.getElementById("screen");
@@ -148,28 +151,38 @@ function handleClick(event) {
     secondValue = screen.innerText;
     console.log(`second value is ${secondValue}`);
     // switch statement that uses one of the operations based on which operator was clicked
-    switch (innerContent) {
-      case "+":
-        result = addition(+firstValue, +secondValue);
-        break;
-      case "-":
-        result = subtraction(+firstValue, +secondValue);
-        break;
-      case "÷":
-        result = division(+firstValue, +secondValue);
-        break;
-      case "×":
-        result = multiplication(+firstValue, +secondValue);
-        break;
+    calculate();
+    function calculate() {
+      switch (innerContent) {
+        case "+":
+          result = addition(+firstValue, +secondValue);
+          break;
+        case "-":
+          result = subtraction(+firstValue, +secondValue);
+          break;
+        case "÷":
+          result = division(+firstValue, +secondValue);
+          break;
+        case "×":
+          result = multiplication(+firstValue, +secondValue);
+          break;
+      }
+      screen.innerText = result;
     }
-    // Display result on screen
-    screen.innerText = result;
+
+    // Message for future self:
+    // make equals function that will fire the calculate function if equals is pressed, you might have to take calculate function out, because of closure.
 
     // Empty values after operation is done
     firstValue = null;
     secondValue = null;
   }
 }
+equals.addEventListener("click", function () {
+  console.log("equals was clicked");
+  secondValue = screen.innerText;
+  calculate();
+});
 
 let negateNumber = () => {
   console.log("Negate button clicked");
@@ -192,6 +205,7 @@ let negateNumber = () => {
 
 let percentageNum = () => {
   let screen = document.getElementById("screen");
+  console.log(`percentage button clicked: ${screen.innerText}`);
   if (isNaN(screen.innerText)) {
     return;
   } else {
